@@ -1,3 +1,4 @@
+using Interactions.Damageable;
 using UnityEngine;
 using UnityEngine.AI;
 using Utils.Extensions;
@@ -8,23 +9,30 @@ namespace Crowd
     public class CrowdMember : MonoBehaviour, IObserver<Vector3>
     {
         [SerializeField] private LayerMask turnMask;
-        [SerializeField] private NavMeshAgent navMeshAgent;
-        [SerializeField] private Collider turnCollider;
         [SerializeField] protected MeshRenderer meshRenderer;
+        
+        [SerializeField] private NavMeshAgent navMeshAgent;
+
+        [SerializeField] protected LayerMask attackMask;
+        [SerializeField] private int power;
         
         private IObservable<Vector3> _observable;
         private bool _isTurned;
 
-        private void OnTriggerEnter(Collider other)
+        protected virtual void OnTriggerEnter(Collider other)
         {
-            if (!_isTurned)
-                return;
-
-            if (!turnMask.Contains(other.gameObject.layer) || !other.TryGetComponent(out CrowdMember crowdPerson))
+            if (!_isTurned || !turnMask.Contains(other.gameObject.layer) || !other.TryGetComponent(out CrowdMember crowdPerson))
                 return;
             
             crowdPerson.Turn(_observable, meshRenderer.material);
-            Physics.IgnoreCollision(turnCollider, other);
+        }
+
+        protected virtual void OnCollisionEnter(Collision other)
+        {
+            if (!attackMask.Contains(other.gameObject.layer) || !other.gameObject.TryGetComponent(out IDamageable damageable) || damageable.IsDead)
+                return;
+            
+            Attack(damageable);
         }
 
         protected void Turn(IObservable<Vector3> observable, Material material)
@@ -43,5 +51,13 @@ namespace Crowd
         void IObserver<Vector3>.Update(Vector3 targetPos) => Move(targetPos);
 
         private void Move(Vector3 targetPos) => navMeshAgent.SetDestination(targetPos);
+
+        private void Attack(IDamageable damageable)
+        {
+            damageable.TakeDamage(power, meshRenderer.material);
+            
+            _observable.Remove(this);
+            gameObject.SetActive(false);
+        }
     }
 }

@@ -9,5 +9,7 @@ namespace Utils.Services
         public static Vector3 ScreenToWorldPoint(Vector3 screenPoint) => CAMERA.ScreenToWorldPoint(screenPoint);
 
         public static Ray ScreenPointToRay(Vector3 screenPoint) => CAMERA.ScreenPointToRay(screenPoint);
+
+        public static void LootAtCamera(Transform target) => target.LookAt(CAMERA.transform);
     }
 }

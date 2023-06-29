@@ -5,11 +5,11 @@ namespace Core
 {
     public class Bootstrapper : MonoBehaviour
     {
-        [SerializeField] private CrowdFormer crowdFormer;
+        [SerializeField] private CrowdMaster crowdMaster;
         
         private void Start()
         {
-            crowdFormer.Bind();
+            crowdMaster.Bind();
         }
     }
 }
