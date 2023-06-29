@@ -10,7 +10,7 @@ namespace Utils.Services
                 return center;
             
             int currentIndex = index;
-            int iteration = 1;
+            int iteration = 0;
             Vector3 radiusOffset = Vector3.zero;
             float rotationAngle = 360f;
             
@@ -21,6 +21,7 @@ namespace Utils.Services
                 
                 radiusOffset = Vector3.right * offset * iteration;
                 rotationAngle = Vector3.Angle(radiusOffset, radiusOffset + Vector3.forward * offset);
+                
             }
 
             Vector3 finalOffset = Quaternion.AngleAxis(rotationAngle * currentIndex, Vector3.up) * radiusOffset;
