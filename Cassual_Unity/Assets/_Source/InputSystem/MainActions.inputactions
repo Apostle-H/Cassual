@@ -1,0 +1,54 @@
+{
+    "name": "MainActions",
+    "maps": [
+        {
+            "name": "Crowd",
+            "id": "9cb4a957-fd19-4ade-8fef-80ef48b66d05",
+            "actions": [
+                {
+                    "name": "SetDestination",
+                    "type": "Button",
+                    "id": "a8edc037-d479-43f6-ad6e-a9c0f83c4a93",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Destination",
+                    "type": "Value",
+                    "id": "1647187e-1b1c-44bb-a3b6-fc09e19603f1",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "88ade68a-fbf0-4842-a70f-b2be7a2bb1c9",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SetDestination",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "44b1f8a0-4df1-4387-ae15-e500df4f5bee",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Destination",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
