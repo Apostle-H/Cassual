@@ -17,12 +17,13 @@ namespace BankSystem
         {
             _towerCapturedSignal = Signals.Get<TowerCapturedSignal>();
             
+            Add(10);
             Bind();
         }
 
         private void Bind() => _towerCapturedSignal.AddListener(Add);
 
-        private void Add(int amount)
+        public void Add(int amount)
         {
             Amount = Amount + amount < 0 ? 0 : Amount + amount;
             

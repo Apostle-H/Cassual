@@ -17,6 +17,7 @@ namespace Core.Installers
             mainActions.Enable();
             
             Container.Bind<MainActions.CrowdActions>().FromInstance(mainActions.Crowd).AsSingle().NonLazy();
+            Container.Bind<MainActions.BuildingsActions>().FromInstance(mainActions.Buildings).AsSingle().NonLazy();
         }
     }
 }

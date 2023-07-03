@@ -54,6 +54,11 @@ namespace Crowd
 
         private void Attack(IDamageable damageable)
         {
+            if (!_isTurned)
+            {
+                return;
+            }
+            
             damageable.TakeDamage(power, meshRenderer.material);
             
             _observable.Remove(this);

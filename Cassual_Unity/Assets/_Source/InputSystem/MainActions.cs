@@ -72,6 +72,54 @@ namespace InputSystem
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Buildings"",
+            ""id"": ""9bb571c5-ed77-493a-a27a-3c276a5784b7"",
+            ""actions"": [
+                {
+                    ""name"": ""SetUpCamp"",
+                    ""type"": ""Button"",
+                    ""id"": ""d98a36e1-9a30-415a-a7d6-2fb6fbc9fe94"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Position"",
+                    ""type"": ""Value"",
+                    ""id"": ""182dd237-6254-47e4-b9c5-ba1159dbe1a1"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""ff437b83-d8cf-4fb1-87eb-f5839be13529"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SetUpCamp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""46a152b8-57a7-4a08-84bd-7f5c657226da"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Position"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -80,6 +128,10 @@ namespace InputSystem
             m_Crowd = asset.FindActionMap("Crowd", throwIfNotFound: true);
             m_Crowd_SetDestination = m_Crowd.FindAction("SetDestination", throwIfNotFound: true);
             m_Crowd_Destination = m_Crowd.FindAction("Destination", throwIfNotFound: true);
+            // Buildings
+            m_Buildings = asset.FindActionMap("Buildings", throwIfNotFound: true);
+            m_Buildings_SetUpCamp = m_Buildings.FindAction("SetUpCamp", throwIfNotFound: true);
+            m_Buildings_Position = m_Buildings.FindAction("Position", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -176,10 +228,56 @@ namespace InputSystem
             }
         }
         public CrowdActions @Crowd => new CrowdActions(this);
+
+        // Buildings
+        private readonly InputActionMap m_Buildings;
+        private IBuildingsActions m_BuildingsActionsCallbackInterface;
+        private readonly InputAction m_Buildings_SetUpCamp;
+        private readonly InputAction m_Buildings_Position;
+        public struct BuildingsActions
+        {
+            private @MainActions m_Wrapper;
+            public BuildingsActions(@MainActions wrapper) { m_Wrapper = wrapper; }
+            public InputAction @SetUpCamp => m_Wrapper.m_Buildings_SetUpCamp;
+            public InputAction @Position => m_Wrapper.m_Buildings_Position;
+            public InputActionMap Get() { return m_Wrapper.m_Buildings; }
+            public void Enable() { Get().Enable(); }
+            public void Disable() { Get().Disable(); }
+            public bool enabled => Get().enabled;
+            public static implicit operator InputActionMap(BuildingsActions set) { return set.Get(); }
+            public void SetCallbacks(IBuildingsActions instance)
+            {
+                if (m_Wrapper.m_BuildingsActionsCallbackInterface != null)
+                {
+                    @SetUpCamp.started -= m_Wrapper.m_BuildingsActionsCallbackInterface.OnSetUpCamp;
+                    @SetUpCamp.performed -= m_Wrapper.m_BuildingsActionsCallbackInterface.OnSetUpCamp;
+                    @SetUpCamp.canceled -= m_Wrapper.m_BuildingsActionsCallbackInterface.OnSetUpCamp;
+                    @Position.started -= m_Wrapper.m_BuildingsActionsCallbackInterface.OnPosition;
+                    @Position.performed -= m_Wrapper.m_BuildingsActionsCallbackInterface.OnPosition;
+                    @Position.canceled -= m_Wrapper.m_BuildingsActionsCallbackInterface.OnPosition;
+                }
+                m_Wrapper.m_BuildingsActionsCallbackInterface = instance;
+                if (instance != null)
+                {
+                    @SetUpCamp.started += instance.OnSetUpCamp;
+                    @SetUpCamp.performed += instance.OnSetUpCamp;
+                    @SetUpCamp.canceled += instance.OnSetUpCamp;
+                    @Position.started += instance.OnPosition;
+                    @Position.performed += instance.OnPosition;
+                    @Position.canceled += instance.OnPosition;
+                }
+            }
+        }
+        public BuildingsActions @Buildings => new BuildingsActions(this);
         public interface ICrowdActions
         {
             void OnSetDestination(InputAction.CallbackContext context);
             void OnDestination(InputAction.CallbackContext context);
+        }
+        public interface IBuildingsActions
+        {
+            void OnSetUpCamp(InputAction.CallbackContext context);
+            void OnPosition(InputAction.CallbackContext context);
         }
     }
 }
