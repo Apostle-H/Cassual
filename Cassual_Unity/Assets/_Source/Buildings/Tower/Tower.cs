@@ -2,6 +2,9 @@ using System;
 using Buildings.Signals;
 using Interactions.Damageable;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.Serialization;
+using Utils.Extensions;
 
 namespace Buildings
 {
@@ -11,6 +14,8 @@ namespace Buildings
         [SerializeField] private int worth;
 
         [SerializeField] private MeshRenderer meshRenderer;
+
+        [SerializeField] private UnityEvent capturedEvents; 
 
         public bool IsDead { get; private set; }
 
@@ -36,6 +41,8 @@ namespace Buildings
             meshRenderer.material = killMaterial;
             OnDeath?.Invoke();
             _towerCapturedSignal.Dispatch(worth);
+            
+            capturedEvents.Invoke();
         } 
     }
 }
