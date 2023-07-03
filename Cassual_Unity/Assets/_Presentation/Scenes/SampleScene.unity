@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: eb7576428ee7ed440bd3a186e2df5891, type: 2}
 --- !u!1 &13164321
 GameObject:
   m_ObjectHideFlags: 0
@@ -174,7 +174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Power>k__BackingField: 25
-  worth: 10
+  worth: 20
   meshRenderer: {fileID: 13164324}
   capturedEvents:
     m_PersistentCalls:
@@ -1738,7 +1738,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Power>k__BackingField: 35
-  worth: 10
+  worth: 20
   meshRenderer: {fileID: 282801932}
   capturedEvents:
     m_PersistentCalls:
@@ -1886,7 +1886,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Power>k__BackingField: 70
-  worth: 10
+  worth: 20
   meshRenderer: {fileID: 321477987}
   capturedEvents:
     m_PersistentCalls:
@@ -4427,8 +4427,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c3b52127053400195345aadea70ce88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Power>k__BackingField: 50
-  worth: 25
+  <Power>k__BackingField: 30
+  worth: 30
   meshRenderer: {fileID: 744072576}
   capturedEvents:
     m_PersistentCalls:
@@ -4513,7 +4513,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 744072573}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -77.7, y: 4.6, z: -10.8}
+  m_LocalPosition: {x: -77.7, y: 0.4000001, z: -10.8}
   m_LocalScale: {x: 6.5456, y: 16.364, z: 6.5456}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6367,7 +6367,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Power>k__BackingField: 50
-  worth: 10
+  worth: 20
   meshRenderer: {fileID: 1014028239}
   capturedEvents:
     m_PersistentCalls:
@@ -8153,7 +8153,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1417551950}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 67.6, y: 1, z: -47.1}
+  m_LocalPosition: {x: 33.8, y: 1, z: -47.1}
   m_LocalScale: {x: 4, y: 10, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8666,7 +8666,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Power>k__BackingField: 25
-  worth: 10
+  worth: 20
   meshRenderer: {fileID: 1488225074}
   capturedEvents:
     m_PersistentCalls:
@@ -9063,6 +9063,7 @@ Transform:
   - {fileID: 1301213340}
   - {fileID: 340677163}
   - {fileID: 2099165525}
+  - {fileID: 1652956600}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9465,6 +9466,103 @@ MonoBehaviour:
   m_Area: 1
   m_IgnoreFromBuild: 0
   m_AffectedAgents: ffffffff
+--- !u!1 &1652956599
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1652956600}
+  - component: {fileID: 1652956603}
+  - component: {fileID: 1652956602}
+  - component: {fileID: 1652956601}
+  m_Layer: 9
+  m_Name: CampPlace (14)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1652956600
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1652956599}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -103, y: 0, z: -10.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1520500026}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1652956601
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1652956599}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1652956602
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1652956599}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a2ee85161efa785428d4c8a63f848700, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1652956603
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1652956599}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1676796208
 GameObject:
   m_ObjectHideFlags: 0
@@ -9516,7 +9614,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Power>k__BackingField: 35
-  worth: 10
+  worth: 20
   meshRenderer: {fileID: 1676796211}
   capturedEvents:
     m_PersistentCalls:
@@ -9761,7 +9859,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Power>k__BackingField: 70
-  worth: 10
+  worth: 20
   meshRenderer: {fileID: 1728996812}
   capturedEvents:
     m_PersistentCalls:
@@ -9888,7 +9986,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1741096836}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -115.1, y: 4.6, z: -10.8}
+  m_LocalPosition: {x: -115.1, y: 0.4, z: -10.8}
   m_LocalScale: {x: 7.5294037, y: 18.82351, z: 7.5294037}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9908,7 +10006,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c3b52127053400195345aadea70ce88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Power>k__BackingField: 300
+  <Power>k__BackingField: 100
   worth: 25
   meshRenderer: {fileID: 1741096839}
   capturedEvents:
@@ -10773,7 +10871,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Power>k__BackingField: 90
-  worth: 10
+  worth: 20
   meshRenderer: {fileID: 1865941661}
   capturedEvents:
     m_PersistentCalls:
@@ -10966,7 +11064,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Power>k__BackingField: 50
-  worth: 10
+  worth: 20
   meshRenderer: {fileID: 1896419235}
   capturedEvents:
     m_PersistentCalls:
@@ -11667,7 +11765,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Power>k__BackingField: 90
-  worth: 10
+  worth: 20
   meshRenderer: {fileID: 2018043697}
   capturedEvents:
     m_PersistentCalls:
