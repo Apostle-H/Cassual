@@ -1,4 +1,5 @@
 using System.Collections;
+using Crowd;
 using TMPro;
 using UnityEngine;
 using Utils.Services;
@@ -18,6 +19,10 @@ namespace Buildings.Camp
         [SerializeField] private TextMeshProUGUI lvlText;
         
         private int _spawnAmount;
+
+        private int _currentHeldAmount;
+
+        private GameObject _hiddenPlace;
         
         public int Level { get; private set; }
         
@@ -33,19 +38,30 @@ namespace Buildings.Camp
 
         private IEnumerator SpawnRoutine()
         {
-            while (true)
-            {
-                yield return new WaitForSeconds(spawnFrequency);
-                Spawn();
-            }
+            yield return new WaitForSeconds(spawnFrequency);
+            Spawn();
         }
 
         private void Spawn()
         {
+            _currentHeldAmount = _spawnAmount;
             for (int i = 0; i < _spawnAmount; i++)
             {
-                Vector3 spawnPos = MathService.RadiusPlacePosition(transform.position, offset, i + 1);
-                Instantiate(prefab).transform.position += new Vector3(spawnPos.x, 0, spawnPos.z);
+                Vector3 spawnPos = MathService.RadiusPlacePosition(transform.position, offset, i + 1); 
+                CrowdMember crowdMember = Instantiate(prefab).GetComponent<CrowdMember>();
+                crowdMember.transform.position += new Vector3(spawnPos.x, 0, spawnPos.z);
+                
+                crowdMember.OnTurned += CrowdMemberTaken;
+            }
+        }
+
+        private void CrowdMemberTaken()
+        {
+            _currentHeldAmount--;
+            
+            if (_currentHeldAmount <= 0)
+            {
+                StartCoroutine(SpawnRoutine());
             }
         }
 
