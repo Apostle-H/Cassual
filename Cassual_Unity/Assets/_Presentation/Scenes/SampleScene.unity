@@ -4427,7 +4427,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c3b52127053400195345aadea70ce88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Power>k__BackingField: 1
+  <Power>k__BackingField: 50
   worth: 25
   meshRenderer: {fileID: 744072576}
   capturedEvents:
