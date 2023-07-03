@@ -17,7 +17,6 @@ namespace BankSystem
         {
             _towerCapturedSignal = Signals.Get<TowerCapturedSignal>();
             
-            Add(10);
             Bind();
         }
 

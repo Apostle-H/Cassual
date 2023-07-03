@@ -1,12 +1,12 @@
+using System;
 using Interactions.Damageable;
 using UnityEngine;
 using UnityEngine.AI;
 using Utils.Extensions;
-using Utils.Interfaces.Observable;
 
 namespace Crowd
 {
-    public class CrowdMember : MonoBehaviour, IObserver<Vector3>
+    public class CrowdMember : MonoBehaviour, Utils.Interfaces.Observable.IObserver<Vector3>
     {
         [SerializeField] private LayerMask turnMask;
         [SerializeField] protected MeshRenderer meshRenderer;
@@ -16,8 +16,10 @@ namespace Crowd
         [SerializeField] protected LayerMask attackMask;
         [SerializeField] private int power;
         
-        private IObservable<Vector3> _observable;
+        private Utils.Interfaces.Observable.IObservable<Vector3> _observable;
         private bool _isTurned;
+
+        public event Action OnTurned;
 
         protected virtual void OnTriggerEnter(Collider other)
         {
@@ -35,7 +37,7 @@ namespace Crowd
             Attack(damageable);
         }
 
-        protected void Turn(IObservable<Vector3> observable, Material material)
+        protected void Turn(Utils.Interfaces.Observable.IObservable<Vector3> observable, Material material)
         {
             if (_isTurned)
                 return;
@@ -46,9 +48,10 @@ namespace Crowd
             
             _observable = observable;
             _observable.Add(this);
+            OnTurned?.Invoke();
         }
 
-        void IObserver<Vector3>.Update(Vector3 targetPos) => Move(targetPos);
+        void Utils.Interfaces.Observable.IObserver<Vector3>.Update(Vector3 targetPos) => Move(targetPos);
 
         private void Move(Vector3 targetPos) => navMeshAgent.SetDestination(targetPos);
 
