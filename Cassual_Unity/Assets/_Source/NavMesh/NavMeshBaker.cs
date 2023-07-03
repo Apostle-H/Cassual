@@ -16,6 +16,7 @@ namespace NavMesh
         private IEnumerator BakeRoutine()
         {
             yield return new WaitForFixedUpdate();
+            yield return new WaitForFixedUpdate();
             surface.BuildNavMesh();
         }
     }

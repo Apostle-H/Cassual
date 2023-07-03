@@ -45,7 +45,8 @@ namespace Crowd
             _isTurned = true;
             
             meshRenderer.material = material;
-            
+
+            navMeshAgent.enabled = true;
             _observable = observable;
             _observable.Add(this);
             OnTurned?.Invoke();
